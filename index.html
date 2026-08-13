@@ -12,7 +12,7 @@
   <style>
     :root{--terminal-bg:#07090b;--panel:#0d1115;--panel-2:#12171c;--border:#273039;--grid:#202a31;--foreground:#e7edf2;--muted-foreground:#82909b;--primary:#ff9f1a;--primary-soft:#2d1d07;--green:#22d18b;--red:#ff5a5f;--blue:#42a5ff;--viz-series-1:#ff9f1a}
     *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--terminal-bg);color:var(--foreground)}body{font-family:"SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono","PingFang SC",monospace;font-size:13px;line-height:1.4}button,label{font:inherit}code{font-family:inherit}::-webkit-scrollbar{height:9px;width:9px}::-webkit-scrollbar-track{background:#090c0f}::-webkit-scrollbar-thumb{background:#35414a;border:2px solid #090c0f}
-    #integrated-sector-monitor{--sector-rise:var(--green);--sector-fall:var(--red);--sector-ma:var(--blue);color:var(--foreground);min-height:100vh;background:linear-gradient(180deg,#0d1013 0,#07090b 220px);border-top:4px solid var(--primary)}#integrated-sector-monitor .state{position:absolute;opacity:0;pointer-events:none}
+    #integrated-sector-monitor{--sector-rise:var(--green);--sector-fall:var(--red);--sector-ma:var(--blue);color:var(--foreground);min-height:100vh;background:linear-gradient(180deg,#0d1013 0,#07090b 220px);border-top:4px solid var(--primary)}#integrated-sector-monitor .state{position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;clip-path:inset(50%);pointer-events:none}
     #integrated-sector-monitor .dashboard{display:grid;gap:10px;width:100%;max-width:none;margin:0;padding:10px 14px 22px}#integrated-sector-monitor h2,#integrated-sector-monitor h3,#integrated-sector-monitor p,#integrated-sector-monitor figure{margin:0}#integrated-sector-monitor header{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);padding:3px 0 9px}#integrated-sector-monitor header::before{content:"SECTOR <GO>";display:inline-flex;align-items:center;height:30px;padding:0 9px;background:var(--primary);color:#090909;font-weight:900;letter-spacing:.02em}#integrated-sector-monitor header h2{font-size:18px;letter-spacing:.04em;text-transform:uppercase}#integrated-sector-monitor header p{margin-left:auto}
     #integrated-sector-monitor .sector-controls{display:flex;flex-wrap:wrap;gap:3px;border:1px solid var(--border);background:#090c0f;padding:4px}
     #integrated-sector-monitor .sector-choice{display:inline-flex;gap:5px;align-items:baseline}#integrated-sector-monitor .sector-choice code{color:#71808b;font-size:11px}
@@ -126,6 +126,21 @@
       const current = Number(plot.dataset.zoom || 1);
       if (action === 'fit') zoomPlot(plot, (plot.clientWidth - 2) / baseWidth, plot.clientWidth / 2);
       else zoomPlot(plot, current * (action === 'in' ? 1.25 : 0.8), plot.clientWidth / 2);
+    });
+  });
+  // Label activation normally focuses the hidden radio near the top of the
+  // document, which makes browsers jump upward. Select macro charts manually
+  // and restore the exact viewport position instead.
+  root.querySelectorAll('.macro-controls label[for^="macro-"]').forEach((label) => {
+    label.addEventListener('click', (event) => {
+      event.preventDefault();
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
+      const input = document.getElementById(label.htmlFor);
+      if (!input || input.checked) return;
+      input.checked = true;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+      requestAnimationFrame(() => requestAnimationFrame(() => window.scrollTo(scrollX, scrollY)));
     });
   });
   root.querySelectorAll('input[type="radio"]').forEach((input) => input.addEventListener('change', () => requestAnimationFrame(() => { fitVisiblePlots(); syncLabel(); })));
