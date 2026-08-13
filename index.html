@@ -13,17 +13,17 @@
     :root{--terminal-bg:#07090b;--panel:#0d1115;--panel-2:#12171c;--border:#273039;--grid:#202a31;--foreground:#e7edf2;--muted-foreground:#82909b;--primary:#ff9f1a;--primary-soft:#2d1d07;--green:#22d18b;--red:#ff5a5f;--blue:#42a5ff;--viz-series-1:#ff9f1a}
     *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--terminal-bg);color:var(--foreground)}body{font-family:"SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono","PingFang SC",monospace;font-size:13px;line-height:1.4}button,label{font:inherit}code{font-family:inherit}::-webkit-scrollbar{height:9px;width:9px}::-webkit-scrollbar-track{background:#090c0f}::-webkit-scrollbar-thumb{background:#35414a;border:2px solid #090c0f}
     #integrated-sector-monitor{--sector-rise:var(--green);--sector-fall:var(--red);--sector-ma:var(--blue);color:var(--foreground);min-height:100vh;background:linear-gradient(180deg,#0d1013 0,#07090b 220px);border-top:4px solid var(--primary)}#integrated-sector-monitor .state{position:absolute;opacity:0;pointer-events:none}
-    #integrated-sector-monitor .dashboard{display:grid;gap:10px;max-width:1680px;margin:0 auto;padding:10px 14px 22px}#integrated-sector-monitor h2,#integrated-sector-monitor h3,#integrated-sector-monitor p,#integrated-sector-monitor figure{margin:0}#integrated-sector-monitor header{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);padding:3px 0 9px}#integrated-sector-monitor header::before{content:"SECTOR <GO>";display:inline-flex;align-items:center;height:30px;padding:0 9px;background:var(--primary);color:#090909;font-weight:900;letter-spacing:.02em}#integrated-sector-monitor header h2{font-size:18px;letter-spacing:.04em;text-transform:uppercase}#integrated-sector-monitor header p{margin-left:auto}
+    #integrated-sector-monitor .dashboard{display:grid;gap:10px;width:100%;max-width:none;margin:0;padding:10px 14px 22px}#integrated-sector-monitor h2,#integrated-sector-monitor h3,#integrated-sector-monitor p,#integrated-sector-monitor figure{margin:0}#integrated-sector-monitor header{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);padding:3px 0 9px}#integrated-sector-monitor header::before{content:"SECTOR <GO>";display:inline-flex;align-items:center;height:30px;padding:0 9px;background:var(--primary);color:#090909;font-weight:900;letter-spacing:.02em}#integrated-sector-monitor header h2{font-size:18px;letter-spacing:.04em;text-transform:uppercase}#integrated-sector-monitor header p{margin-left:auto}
     #integrated-sector-monitor .sector-controls{display:flex;flex-wrap:wrap;gap:3px;border:1px solid var(--border);background:#090c0f;padding:4px}
     #integrated-sector-monitor .sector-choice{display:inline-flex;gap:5px;align-items:baseline}#integrated-sector-monitor .sector-choice code{color:#71808b;font-size:11px}
     #integrated-sector-monitor .btn{display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;border:1px solid transparent;border-radius:1px;background:transparent;color:#aab6bf;cursor:pointer;text-decoration:none;transition:background .12s,color .12s,border-color .12s}#integrated-sector-monitor .btn:hover{color:#fff;background:#182027;border-color:#36424b}#integrated-sector-monitor button.btn{border-color:#35404a;background:#11171c}
-    #integrated-sector-monitor .view-row{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;white-space:nowrap;background:#0a0e11;border:1px solid var(--border);padding:4px}
+    #integrated-sector-monitor .view-row{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;background:#0a0e11;border:1px solid var(--border);padding:4px}
     #integrated-sector-monitor .view-controls{margin-right:auto}
-    #integrated-sector-monitor .view-controls,#integrated-sector-monitor .period-controls,#integrated-sector-monitor .chart-zoom-controls{display:flex;gap:.25rem;align-items:center}#integrated-sector-monitor .period-controls,#integrated-sector-monitor .chart-zoom-controls{display:none}
+    #integrated-sector-monitor .view-controls,#integrated-sector-monitor .period-controls,#integrated-sector-monitor .chart-zoom-controls{display:flex;gap:.25rem;align-items:center;flex-wrap:nowrap;white-space:nowrap}#integrated-sector-monitor .period-controls,#integrated-sector-monitor .chart-zoom-controls{display:none}#integrated-sector-monitor .period-controls .btn{flex:0 0 auto;white-space:nowrap}
     #integrated-sector-monitor .sector-summary{display:none;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--primary);padding:10px 12px}#integrated-sector-monitor .sector-summary h3{font-size:16px;color:#fff}#integrated-sector-monitor .sector-summary h3 code{display:inline-block;margin-left:5px;padding:1px 5px;background:var(--primary);color:#07090b}
     #integrated-sector-monitor .metrics{display:flex;gap:0;flex-wrap:wrap;border:1px solid #242d34}#integrated-sector-monitor .metrics span{padding:5px 10px;border-right:1px solid #242d34;color:var(--muted-foreground)}#integrated-sector-monitor .metrics span:last-child{border-right:0}#integrated-sector-monitor .metrics b{font-weight:700;color:#f1f5f8}
     #integrated-sector-monitor .up{color:var(--sector-rise)}#integrated-sector-monitor .down{color:var(--sector-fall)}
-    #integrated-sector-monitor .kline,#integrated-sector-monitor .holdings,#integrated-sector-monitor .fundamental-model,#integrated-sector-monitor .macro-panel,#integrated-sector-monitor .macro-chart{display:none}#integrated-sector-monitor .kline,#integrated-sector-monitor .macro-chart{overflow-x:auto;overscroll-behavior-inline:contain;cursor:grab;touch-action:pan-y;user-select:none;background:#080b0e;border:1px solid var(--border)}#integrated-sector-monitor .kline:active,#integrated-sector-monitor .macro-chart:active{cursor:grabbing}#integrated-sector-monitor .kline svg,#integrated-sector-monitor .macro-chart svg{height:auto;display:block;border:0;background:#080b0e}
+    #integrated-sector-monitor .kline,#integrated-sector-monitor .holdings,#integrated-sector-monitor .fundamental-model,#integrated-sector-monitor .macro-panel,#integrated-sector-monitor .macro-chart{display:none}#integrated-sector-monitor .kline,#integrated-sector-monitor .macro-chart{width:100%;overflow-x:auto;overscroll-behavior-inline:contain;cursor:grab;touch-action:pan-y;user-select:none;background:#080b0e;border:1px solid var(--border)}#integrated-sector-monitor .kline:active,#integrated-sector-monitor .macro-chart:active{cursor:grabbing}#integrated-sector-monitor .kline svg,#integrated-sector-monitor .macro-chart svg{min-width:100%;height:auto;display:block;border:0;background:#080b0e}
     #integrated-sector-monitor .kline svg text,#integrated-sector-monitor .macro-chart svg text{fill:#91a0aa;font-family:"SFMono-Regular",Menlo,monospace}#integrated-sector-monitor .kline .frame,#integrated-sector-monitor .macro-chart .frame{fill:none;stroke:#364149}#integrated-sector-monitor .kline .grid,#integrated-sector-monitor .macro-chart .grid{stroke:var(--grid)}
     #integrated-sector-monitor .kline .rise,#integrated-sector-monitor .macro-chart .rise{fill:var(--sector-rise);stroke:var(--sector-rise)}#integrated-sector-monitor .kline .fall,#integrated-sector-monitor .macro-chart .fall{fill:var(--sector-fall);stroke:var(--sector-fall)}#integrated-sector-monitor .kline .volume,#integrated-sector-monitor .macro-chart .volume{opacity:.45}#integrated-sector-monitor .kline .ma,#integrated-sector-monitor .macro-chart .ma{fill:none;stroke:var(--sector-ma);stroke-width:1.7}
     #integrated-sector-monitor .holdings,#integrated-sector-monitor .fundamental-model,#integrated-sector-monitor .macro-panel{gap:10px;background:var(--panel);border:1px solid var(--border);padding:12px}#integrated-sector-monitor .holding-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}#integrated-sector-monitor .holding-head b{font-weight:700}#integrated-sector-monitor .bar-cell{width:28%}#integrated-sector-monitor .bar-cell span{display:block;height:7px;background:var(--viz-series-1)}
@@ -52,7 +52,8 @@
   if (!root) return;
   const plots = Array.from(root.querySelectorAll('.kline,.macro-chart'));
   const zoomLabel = root.querySelector('[data-chart-zoom-label]');
-  const visiblePlot = () => plots.find((plot) => plot.offsetParent !== null);
+  const visiblePlots = () => plots.filter((plot) => plot.offsetParent !== null);
+  const visiblePlot = () => visiblePlots()[0];
   const zoomPlot = (plot, nextScale, anchorX) => {
     const svg = plot && plot.querySelector('svg');
     if (!svg || !plot.clientWidth) return;
@@ -77,13 +78,14 @@
     const scale = Number(plot.dataset.zoom || 1);
     zoomLabel.textContent = scale <= fitScale + 0.002 ? '全部' : `${Math.round(scale * 100)}%`;
   };
-  const ensureFirstFit = () => {
-    const plot = visiblePlot();
-    if (!plot || plot.dataset.firstFitted === 'true' || !plot.clientWidth) return;
-    const baseWidth = Number(plot.dataset.baseWidth);
-    plot.dataset.firstFitted = 'true';
-    zoomPlot(plot, (plot.clientWidth - 2) / baseWidth, 0);
-    requestAnimationFrame(() => { plot.scrollLeft = 0; });
+  const fitVisiblePlots = (force = false) => {
+    visiblePlots().forEach((plot) => {
+      if (!plot.clientWidth || (!force && plot.dataset.firstFitted === 'true')) return;
+      const baseWidth = Number(plot.dataset.baseWidth);
+      plot.dataset.firstFitted = 'true';
+      zoomPlot(plot, (plot.clientWidth - 2) / baseWidth, 0);
+      requestAnimationFrame(() => { plot.scrollLeft = 0; });
+    });
   };
   plots.forEach((plot) => {
     const svg = plot.querySelector('svg');
@@ -126,9 +128,9 @@
       else zoomPlot(plot, current * (action === 'in' ? 1.25 : 0.8), plot.clientWidth / 2);
     });
   });
-  root.querySelectorAll('input[type="radio"]').forEach((input) => input.addEventListener('change', () => requestAnimationFrame(() => { ensureFirstFit(); syncLabel(); })));
-  window.addEventListener('resize', syncLabel);
-  requestAnimationFrame(() => { ensureFirstFit(); syncLabel(); });
+  root.querySelectorAll('input[type="radio"]').forEach((input) => input.addEventListener('change', () => requestAnimationFrame(() => { fitVisiblePlots(); syncLabel(); })));
+  window.addEventListener('resize', () => requestAnimationFrame(() => { fitVisiblePlots(true); syncLabel(); }));
+  requestAnimationFrame(() => { fitVisiblePlots(); syncLabel(); });
 })();
 </script>
 </body>
